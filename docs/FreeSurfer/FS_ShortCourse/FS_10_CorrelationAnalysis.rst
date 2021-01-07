@@ -28,7 +28,7 @@ DODS vs. DOSS
 
 Before we model these covariates, we need to be familiar with FreeSurfer's modeling options: Different Onset, Different Slope (or **DODS**) and Different Onset, Same Slope (or **DOSS**). DODS will estimate a separate onset (or **intercept**) and a separate slope for each of the covariates in the model, while DOSS restricts the slopes for both covariates to be the same.
 
-The advantages of DODS are that less parameters are estimated, and therefore you will have more degrees of freedom and more statistical power. This probably doesn't matter for large datasets with many degrees of freedom, but it may have an effect on datasets that have only a couple dozen subjects and several covariates. For most analyses, however, DOSS is the better option - it is more flexible, and also allows you to model interaction effects. Whichever model you choose, you should use the model that you think is most reasonable for your data.
+The advantages of DOSS are that fewer parameters are estimated, and therefore you will have more degrees of freedom and more statistical power. This probably doesn't matter for large datasets with many degrees of freedom, but it may have an effect on datasets that have only a couple dozen subjects and several covariates. For most analyses, however, DODS is the better option - it is more flexible, and also allows you to model interaction effects. Whichever model you choose, you should use the model that you think is most reasonable for your data.
 
 .. figure:: 10_DODS_DOSS.png
 
@@ -65,6 +65,16 @@ When you have finished formatting the file, save it as ``CannabisStudy_Age_Audit
   
 You are then ready to create the contrast files to either rerun the group analysis controlling for the covariates, or to run a correlation analysis on any of the covariates.
 
+.. note::
+
+  Another covariate that is useful to include for between-groups analysis is **estimated total intracranial volume**, or eTIV for short. This will control for overall head size, which can be a confounding factor between groups that on average have different head sizes (e.g., males and females, old and young, patients and control; see `this paper <https://www.sciencedirect.com/science/article/pii/S1053811914007769>`__ for an overview of when it is appropriate to include this covariate). If a subject has been processed with recon-all, the following line of code will use ``mri_segstats`` to extract the eTIV (you will need to make sure that this command is run from the directory that contains the subjects, and that SUBJECTS_DIR is pointing to that directory):
+  
+::
+
+    mri_segstats --subject subject_name --etiv-only | grep atlas_icv | awk '{print $4}
+    
+  This number, which usually ranges from about 1,000,000 to 1,500,000 in healthy adults, can then be entered into the FSGD file just as we did with the other numbers. Mean-centering the covariates can also change your interpretation of the results; see `this page <http://mumford.fmripower.org/mean_centering/>`__ for examples of when to do it, and how it will change your interpretation.
+
 Creating Contrast Files for Covariate Analyses
 **********************************************
 
@@ -97,6 +107,7 @@ Note that there are two additional zeroes. The way to read this contrast file is
 For now, let us create two contrast files: One that tests for a difference between groups, and one that tests for the average correlation of the Audit covariate, collapsed across groups. For the second contrast we will use contrast weights of 0.5 each, in order to control for the number of covariates that we are averaging across:
 
 ::
+
   echo "1 -1 0 0 0 0" > HC-CB_Age_Audit.mtx
   echo "0 0 0 0 0.5 0.5" > Audit_Slope.mtx
   
@@ -130,7 +141,7 @@ Run this higher-level script by typing:
   tcsh runAllGroupScripts.sh CannabisStudy_Age_Audit
   
   
-And look at the results in `Freeview <FS_06_Freeview>`.
+And look at the results in :ref:`Freeview <FS_06_Freeview>`.
 
 -----------
 

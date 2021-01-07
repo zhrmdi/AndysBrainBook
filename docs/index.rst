@@ -1,7 +1,9 @@
 Welcome to Andy's Brain Book!
 ==================================================
 
-.. figure:: ABB_HomePage.png
+.. figure:: ABB_logo_book.png
+
+    This resource is sponsored by the `University of Michigan <https://umich.edu/>`__.
 
 This book, *Andy's Brain Book*, is the ReadTheDocs companion
 to `Andy's Brain Blog <https://www.andysbrainblog.com>`__. It is intended for fMRI beginners, with more advanced imaging techniques being added later on. If this is your first time here, watch `this video <https://www.youtube.com/watch?v=zUxOdq3sAFU>`__ for a quick overview of the website.
@@ -80,20 +82,16 @@ If you are completely new to fMRI analysis, I recommend starting with the :ref:`
 
     SPM/SPM_Overview
     
-
-
-.. note::
-
-    The following modules are under construction. Check back soon for more updates!
-    
-       
-
-    
 .. toctree::
     :maxdepth: 1
     :caption: Functional Connectivity with the CONN Toolbox
     
     FunctionalConnectivity/CONN_Overview
+
+.. note::
+
+    The following modules are under construction. Check back soon for more updates!
+    
  
 .. toctree::
    :maxdepth: 1
@@ -139,7 +137,7 @@ If you are completely new to fMRI analysis, I recommend starting with the :ref:`
     
     Miscellaneous/ConvertingDICOMs
     
-.. toctree::
+.. toctree
     :maxdepth: 1
     :caption: Multi-Voxel Pattern Analysis (MVPA)
     
@@ -150,12 +148,30 @@ If you are completely new to fMRI analysis, I recommend starting with the :ref:`
     :caption: Open Science
     
     OpenScience/OS_Overview
+    
+.. toctree::
+    :maxdepth: 1
+    :caption: Advanced Normalization Tools (ANTs)
+    
+    ANTs/ANTs_Overview
+    
+.. toctree::
+    :maxdepth: 1
+    :caption: Tract-Based Spatial Statistics (TBSS)
+    
+    TBSS/TBSS_Overview
 
 .. toctree::
     :maxdepth: 1
     :caption: Statistics for Neuroimagers
     
     Stats/Stats_Overview
+    
+.. toctree::
+    :maxdepth: 1
+    :caption: Machine Learning for Neuroimagers
+    
+    ML/ML_Overview
 
 
 .. Glossary
@@ -181,3 +197,7 @@ If you are completely new to fMRI analysis, I recommend starting with the :ref:`
     1.13.2020: SPM written module complete (videos not up yet)
     
     4.13.2020: SPM videos uploaded
+
+    5.21.2020: CONN Tutorials complete
+    
+    12.08.2020: First part of MVPA tutorial complete, from preprocessing to group-level analysis. Later on, will add other statistical analyses, such as prevalence analysis.
