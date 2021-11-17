@@ -34,14 +34,14 @@ To begin, open up the SPM GUI and click on the ``Batch`` button. From the top of
 
 ::
 
-  SPM -> BasicIO -> File/Dir Operations -> File Operations -> Named File Selector
+  BasicIO -> File/Dir Operations -> File Operations -> Named File Selector
   SPM -> Spatial -> Realign -> Estimate & Reslice
   SPM -> Temporal -> Slice Timing
   SPM -> Spatial -> Coregister: Estimate & Reslice
   SPM -> Spatial -> Segment
   SPM -> Spatial -> Normalise -> Write
   SPM -> Spatial -> Smooth
-  SPM -> BasicIO -> File/Dir Operations -> File Operations -> File Set Split
+  BasicIO -> File/Dir Operations -> File Operations -> File Set Split
   SPM -> Stats -> fMRI Model Specification
   SPM -> Stats -> Model Estimation
   SPM -> Stats -> Contrast Manager
@@ -81,6 +81,10 @@ And the same with the Slice Timing module:
 Likewise, the Coregister step's Reference Image can use the mean functional image generated during Realignment:
 
 .. figure:: 06_CoregisterDependency.png
+
+This is followed by Segmentation, which will use the same parameters that we specified :ref:`earlier <04_SPM_Segmentation>`:
+
+.. figure:: 06_SegmentDependency.png
 
 The Normalise preprocessing step requires both the Forward Deformation fields from Segmentation, as well as both the Slice Timing outputs from Sessions 1 and 2 (which you can select by holding shift and clicking):
 

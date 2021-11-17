@@ -30,7 +30,7 @@ Lines 21 and 24, ``cfg.results.dir`` and ``beta_loc``, can both be set to ``[pwd
 On line 31, we will set a path to the mask. In the original Haxby paper, this mask was created by manually selecting the voxels within the lingual,
 fusiform, inferior occipital, and middle occipital gyri, and then running an omnibus test to detect any voxels that responded to any of the conditions, thresholded at a p-value of p=0.000001. Any significant voxels within the manually defined mask were then binarized to create a new mask.
 
-We could do this ourselves, but the masks have already been provided by the authors on `this website <http://data.pymvpa.org/datasets/haxby2001/>`__. Clicking on the file **subj1-2010.01.14.tar.gz**, for example, will download the original functional and timing data for subj1, including the mask used in the original paper. Download this folder and then unzip it, and note that there are several masks that you are able to choose from; the file ``mask4_vt.nii.gz`` is a ventral temporal mask that contains the significant voxels from the omnibus test. Open a terminal, navigate to the directory ``subj1`` that you just downloaded, and unzip the file by typing ``gunzip mask4_vt.nii.gz``; then navigate to the ``Haxby_Data`` directory, create a new directory for the masks by typing ``mkdir Haxby_Masks``, and move the file to this folder (e.g., ``movefile('~/Downloads/subj1/mask4_vt.nii', '~/Desktop/Haxby_Data/Haxby_Masks/mask4_vt_1.nii')``).
+We could do this ourselves, but the masks have already been provided by the authors on `this website <http://data.pymvpa.org/datasets/haxby2001/>`__. Clicking on the file **subj1-2010.01.14.tar.gz**, for example, will download the original functional and timing data for subj1, including the mask used in the original paper. Download this folder and then unzip it, and note that there are several masks that you are able to choose from; the file ``mask4_vt.nii.gz`` is a ventral temporal mask that contains the significant voxels from the omnibus test. Open a terminal, navigate to the directory ``subj1`` that you just downloaded, and unzip the file by typing ``gunzip mask4_vt.nii.gz``; then navigate to the ``Haxby_Data`` directory, create a new directory for the masks by typing ``mkdir Haxby_Masks``, and move the file to this folder (e.g., ``movefile('~/Downloads/subj1/mask4_vt.nii', '~/Desktop/Haxby_Data/Haxby_Masks/sub-1_mask4_vt_1.nii')``).
 
 Beginning on line 36, we can list all of the conditions we have in our experiment. Since there were 8, we will create 8 labelnames, one for each condition; e.g.,
 
@@ -63,7 +63,15 @@ The last line to edit is near the end, which starts with ``cfg=decoding_describe
 
 .. note::
 
-  To keep your results organized, you can also include the option "cfg.results.filestart", 
+  To keep your results organized, you can also include the option "cfg.results.filestart" to specify a prefix that is applied to the output files.
+  
+.. warning::
+
+  The latest operating system for Macintosh as of this writing (January 24th, 2021) is Catalina. You may run into an error installing SPM and The Decoding Toolbox, which is related to the MEX files. The following code should fix this:
+  
+  ::
+  
+    find . -name "*.mexmaci64" -exec xattr -d com.apple.quarantine {} \;
 
 Examining the Results
 *********************
